@@ -55,7 +55,7 @@ function reply(reply_token) {
 
   request.post(
     {
-      url: '${LINE_MESSAGING_API}/reply',
+      url: 'https://api.line.me/v2/bot/message/reply',
       headers: LINE_HEADER,
       body: body,
     },
