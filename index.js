@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
-const request = require("request");
 const line = require("@line/bot-sdk");
 const port = process.env.PORT || 4000
 const config = {
@@ -35,6 +33,6 @@ function handleEvent(event) {
   });
 }
 
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log("start server at port 3000");
 });
