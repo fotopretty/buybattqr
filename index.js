@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
+  res.send("HTTP POST request sent to the webhook URL!");
   let reply_token = req.body.events[0].replyToken;
   reply(reply_token);
   res.sendStatus(200);
@@ -36,6 +37,7 @@ function reply(reply_token) {
     Authorization:
       "Bearer 6GhvnaaBtEWipStWBjaC/Z8/PehPsK1SCHuN2QS+V7wM2hZEVxdJMDVIqjhBVENj1Q1SV1/BtVGE7JUBDY19ihpR1Sg6h+HpEKYuHtP7Ux3Qg2Gcx+yyt0H3H9ZlhYtQB1QlDokyXF9bQJh9uStMjwdB04t89/1O/w1cDnyilFU=",
   };
+
   let body = JSON.stringify({
     replyToken: reply_token,
     messages: [
@@ -49,6 +51,7 @@ function reply(reply_token) {
       },
     ],
   });
+
   request.post(
     {
       url: "https://api.line.me/v2/bot/message/reply",
