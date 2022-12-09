@@ -15,9 +15,7 @@ aimlParser.load(["./test-aiml.xml"]);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-aimlParser.getResult(msg, (answer, wildCardArray, input) => {
-  reply(reply_token, answer);
-});
+aimlParser.load(["./test-aiml.xml"]);
 
 /* app.get("/", (req, res) => {
   res.sendStatus(200);
@@ -26,7 +24,12 @@ aimlParser.getResult(msg, (answer, wildCardArray, input) => {
 app.post("/webhook", (req, res) => {
   res.send("HTTP POST request sent to the webhook URL!");
   let reply_token = req.body.events[0].replyToken;
-  reply(reply_token);
+  let msg = req.body.events[0].message.text;
+  aimlParser.getResult(msg, (answer, wildCardArray, input) => {
+    reply(reply_token, answer);
+  });
+  /*   let reply_token = req.body.events[0].replyToken;
+  reply(reply_token); */
   res.sendStatus(200);
 });
 
@@ -46,6 +49,16 @@ function reply(reply_token) {
     messages: [
       {
         type: "text",
+        text: msg,
+      },
+    ],
+  });
+
+  /*   let body = JSON.stringify({
+    replyToken: reply_token,
+    messages: [
+      {
+        type: "text",
         text: "你好你好",
       },
       {
@@ -53,7 +66,7 @@ function reply(reply_token) {
         text: "How are you?",
       },
     ],
-  });
+  }); */
 
   request.post(
     {
