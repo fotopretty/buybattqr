@@ -25,7 +25,11 @@ app.post("/webhook", (req, res) => {
   reply(reply_token);
   res.sendStatus(200);
 });
-app.listen(port);
+
+app.listen(PORT, () => {
+  console.log(`Example app listening at ${PORT}`);
+});
+
 function reply(reply_token) {
   let headers = {
     "Content-Type": "application/json",
