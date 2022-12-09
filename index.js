@@ -2,17 +2,26 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const request = require("request");
+const AIMLParser = require("aimlparser");
 
 const port = process.env.PORT || 3000;
 const TOKEN = process.env.LINE_ACCESS_TOKEN;
+
+const aimlParser = new AIMLParser({ name: "HelloBot" });
+
+aimlParser.load(["./test-aiml.xml"]);
 
 // Reply with two static messages
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.get("/", (req, res) => {
-  res.sendStatus(200);
+aimlParser.getResult(msg, (answer, wildCardArray, input) => {
+  reply(reply_token, answer);
 });
+
+/* app.get("/", (req, res) => {
+  res.sendStatus(200);
+}); */
 
 app.post("/webhook", (req, res) => {
   res.send("HTTP POST request sent to the webhook URL!");
@@ -53,8 +62,8 @@ function reply(reply_token) {
       body: body,
     },
     (err, res, body) => {
-      console.log("status = " , res.statusCode);
-      console.log("headers: " , res.headers);
+      console.log("status = ", res.statusCode);
+      console.log("headers: ", res.headers);
     }
   );
 }
