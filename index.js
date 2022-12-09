@@ -15,7 +15,7 @@ aimlParser.load(["./test-aiml.xml"]);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-aimlParser.load(["./test-aiml.xml"]);
+
 
 /* app.get("/", (req, res) => {
   res.sendStatus(200);
@@ -37,7 +37,7 @@ app.listen(port, () => {
   console.log(`Example app listening at ${port}`);
 });
 
-function reply(reply_token) {
+function reply(reply_token,msg) {
   let headers = {
     "Content-Type": "application/json",
     Authorization:
@@ -50,8 +50,7 @@ function reply(reply_token) {
       {
         type: "text",
         text: msg,
-      },
-    ],
+      }]
   });
 
   /*   let body = JSON.stringify({
