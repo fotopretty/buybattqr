@@ -6,11 +6,12 @@ const request = require("request");
 const port = process.env.PORT || 3000;
 const TOKEN = process.env.LINE_ACCESS_TOKEN;
 
-const config = {
-  channelAccessToken:
-    "6GhvnaaBtEWipStWBjaC/Z8/PehPsK1SCHuN2QS+V7wM2hZEVxdJMDVIqjhBVENj1Q1SV1/BtVGE7JUBDY19ihpR1Sg6h+HpEKYuHtP7Ux3Qg2Gcx+yyt0H3H9ZlhYtQB1QlDokyXF9bQJh9uStMjwdB04t89/1O/w1cDnyilFU=",
-  channelSecret: "8637822f5e4b6fc5b3f6edb6e35619cf",
+const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
+const LINE_HEADER = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer 6GhvnaaBtEWipStWBjaC/Z8/PehPsK1SCHuN2QS+V7wM2hZEVxdJMDVIqjhBVENj1Q1SV1/BtVGE7JUBDY19ihpR1Sg6h+HpEKYuHtP7Ux3Qg2Gcx+yyt0H3H9ZlhYtQB1QlDokyXF9bQJh9uStMjwdB04t89/1O/w1cDnyilFU'
 };
+
 
 // Reply with two static messages
 
@@ -54,8 +55,8 @@ function reply(reply_token) {
 
   request.post(
     {
-      url: "https://api.line.me/v2/bot/message/reply",
-      headers: headers,
+      url: '${LINE_MESSAGING_API}/reply',
+      headers: LINE_HEADER,
       body: body,
     },
     (err, res, body) => {
