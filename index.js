@@ -27,7 +27,7 @@ app.post("/webhook", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at ${PORT}`);
+  console.log(`Example app listening at ${port}`);
 });
 
 function reply(reply_token) {
