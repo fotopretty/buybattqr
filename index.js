@@ -13,10 +13,6 @@ const config = {
 new line.Client(config);
 line.middleware(config);
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-
 app.get("/", (req, res) => {
   res.send("hello world");
 });
