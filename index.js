@@ -37,7 +37,7 @@ function reply(reply_token) {
     messages: [
       {
         type: "text",
-        text: "Hello",
+        text: "你好你好",
       },
       {
         type: "text",
