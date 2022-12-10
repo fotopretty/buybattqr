@@ -2,14 +2,11 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const request = require("request");
-const AIMLParser = require("aimlparser");
 
 const port = process.env.PORT || 3000;
 const TOKEN = process.env.LINE_ACCESS_TOKEN;
 
-const aimlParser = new AIMLParser({ name: "HelloBot" });
 
-aimlParser.load(["./test-aiml.xml"]);
 
 // Reply with two static messages
 
