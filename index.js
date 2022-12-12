@@ -54,9 +54,12 @@ function reply(reply_token, msg) {
       headers: headers,
       body: body,
     },
-    (err, res, body) => {
-      console.log("status = " + res.statusCode);
-      console.log("headers: " + res.headers);
+    (err, result, body) => {
+      var res={}
+      res.header=result.headers;
+      res.status=String(result.statusCode);
+      console.log("status = " + res.status);
+      console.log("headers: " + res.header);
     }
   );
 }
